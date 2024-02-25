@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: seeds
+    schema: "{{ target.schema }}_seed_data"
+
+    tables:
+      - name: abc_bank_security_info
+      
+      - name: country_data
+      
+      - name: currency_data
+      
+      - name: exchange_data

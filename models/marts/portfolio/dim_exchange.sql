@@ -1,0 +1,1 @@
+select * from {{ ref('ref_exchange_data') }}

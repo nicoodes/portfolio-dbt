@@ -52,3 +52,29 @@ models:
 snapshots:
   portfolio_tracking:
     +target_schema: snapshots
+
+seeds:
+  +schema: seed_data
+  portfolio_tracking:
+    abc_bank_security_info:
+      +post_hook:
+        - "update {{ this }} set LOAD_TS = '{{ run_started_at }}' where LOAD_TS is null"
+      +column_types:
+        LOAD_TS: timestamp
+    country_data:
+      +post_hook:
+        - "update {{ this }} set LOAD_TS = '{{ run_started_at }}' where LOAD_TS is null"
+      +column_types:
+        LOAD_TS: timestamp
+    currency_data:
+      +post_hook:
+        - "update {{ this }} set LOAD_TS = '{{ run_started_at }}' where LOAD_TS is null"
+      +column_types:
+        LOAD_TS: timestamp
+    exchange_data:
+      +post_hook:
+        - "update {{ this }} set LOAD_TS = '{{ run_started_at }}' where LOAD_TS is null"
+      +column_types:
+        LOAD_TS: timestamp
+        OPEN: time
+        CLOSE: time
