@@ -1,8 +1,10 @@
 with
 current_from_snapshot as(
-    select *
-    from {{ ref('snsh_abc_bank_position') }}
-    where dbt_valid_to is null
+    {{ 
+        current_from_snapshot(
+            snsh_ref=ref('snsh_abc_bank_position')
+        )
+     }}
 )
 select
     *
