@@ -8,8 +8,13 @@ sources:
     tables:
       - name: abc_bank_position
         description: >
-          This is the landing data from the csv 
+          This is the landing data from the csv
           that contains data from ABC positions.
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - ACCOUNTID
+                - SYMBOL
         columns:
           - name: ACCOUNTID 
             description: The code for the account at ABC.
@@ -19,7 +24,6 @@ sources:
           - name: SYMBOL
             description: The symbol of the security at ABC.
             tests:
-              - unique
               - not_null
 
           - name: DESCRIPTION 
