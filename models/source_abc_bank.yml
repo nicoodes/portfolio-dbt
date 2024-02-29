@@ -2,9 +2,70 @@ version: 2
 
 sources:
   - name: abc_bank
-    database: PORTFOLIO_TRACKING
-    schema: SOURCE_DATA
+    database: portfolio_tracking
+    schema: source_data
 
     tables:
-      - name: ABC_BANK_POSITION
-        
+      - name: abc_bank_position
+        description: >
+          This is the landing data from the csv
+          that contains data from ABC positions.
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - ACCOUNTID
+                - SYMBOL
+        columns:
+          - name: ACCOUNTID 
+            description: The code for the account at ABC.
+            tests:
+              - not_null
+
+          - name: SYMBOL
+            description: The symbol of the security at ABC.
+            tests:
+              - not_null
+
+          - name: DESCRIPTION 
+            description: The name of the security at ABC.
+            tests:
+              - not_null
+          
+          - name: EXCHANGE
+            description: >
+              The short name code of the exchange where
+              the security trades.
+            tests:
+              - not_null
+          
+          - name: REPORT_DATE
+            description: The date the report was extracted at from ABC bank.
+            tests:
+              - not_null
+
+          - name: QUANTITY
+            description: >
+              The number of securities we hoild in the
+              portfolio at ABC at report date.
+            tests:
+              - not_null
+
+          - name: COST_BASE
+            description: >
+              The cost we paid for the securities
+              hold in the portfolio at ABC.
+            tests:
+              - not_null
+
+          - name: POSITION_VALUE
+            description: >
+              The value of the securities at ABC
+              at report date.
+            tests:
+              - not_null
+              
+          - name: CURRENCY
+            description: The currency fo the monetary amount of the position.
+            tests:
+              - not_null
+              

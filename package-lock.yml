@@ -1,0 +1,8 @@
+packages:
+- package: dbt-labs/codegen
+  version: 0.12.1
+- package: brooklyn-data/dbt_artifacts
+  version: 2.6.2
+- package: dbt-labs/dbt_utils
+  version: 1.1.1
+sha1_hash: 488843d1b2ecaf02ea3fa04cf7797bd1ab120190

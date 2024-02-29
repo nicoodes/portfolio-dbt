@@ -1,0 +1,8 @@
+version: 2
+seeds:
+  - name: abc_bank_security_info
+    description: csv file with security info.
+    columns:
+      - name: LOAD_TS 
+        tests:
+          - not_null

@@ -1,0 +1,22 @@
+version: 2
+sources:
+  - name: seeds
+    schema: "{{ target.schema }}_seed_data"
+
+    tables:
+      - name: abc_bank_security_info
+        columns:
+          - name: security_code
+            tests:
+              - not_null
+              - unique
+          - name: security_name
+            tests:
+              - not_null
+              - not_empty
+      
+      - name: country_data
+      
+      - name: currency_data
+      
+      - name: exchange_data

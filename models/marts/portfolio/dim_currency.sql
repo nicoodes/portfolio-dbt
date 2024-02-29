@@ -1,0 +1,1 @@
+select * from {{ ref('ref_currency_data') }}

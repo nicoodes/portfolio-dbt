@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: stg_abc_bank_position
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: " year(report_date) >= 2000 "
