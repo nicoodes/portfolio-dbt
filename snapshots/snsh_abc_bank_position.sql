@@ -7,5 +7,7 @@
         invalidate_hard_deletes=True
     ) 
     }}
+
+{{ config(enabled=false) }}
 select * from {{ ref('stg_abc_bank_position') }}
 {% endsnapshot %}

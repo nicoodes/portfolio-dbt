@@ -1,1 +1,1 @@
-select * from {{ ref('ref_abc_bank_security_info') }}
+select * from {{ ref('ref_security_info_abc_bank') }}

@@ -4,3 +4,40 @@ models:
     tests:
       - dbt_utils.expression_is_true:
           expression: " year(report_date) >= 2000 "
+  - name: hist_abc_bank_position
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - POSITION_HKEY
+            - LOAD_TS_UTC
+    columns:
+      - name: POSITION_HKEY
+        tests:
+          - no_hash_collisions:
+              hashed_fields: ACCOUNT_CODE, SECURITY_CODE
+      - name: POSITION_HDIFF
+        tests:
+          - no_hash_collisions:
+              hashed_fields: "{{ as_sql_list(
+                ['ACCOUNT_CODE', 'SECURITY_CODE', 'SECURITY_NAME', 'EXCHANGE_CODE', 'REPORT_DATE',
+                'QUANTITY', 'COST_BASE', 'POSITION_VALUE', 'CURRENCY_CODE'
+              ]) }}"
+  - name: hist_abc_bank_security_info
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - SECURITY_HKEY
+            - LOAD_TS_UTC
+    columns:
+      - name: SECURITY_HKEY
+        tests:
+          - no_hash_collisions:
+              hashed_fields: SECURITY_CODE
+      - name: SECURITY_HDIFF
+        tests:
+          - no_hash_collisions:
+              hashed_fields: "{{ as_sql_list(
+                ['SECURITY_CODE', 'SECURITY_NAME', 'SECTOR_NAME',
+                'INDUSTRY_NAME', 'COUNTRY_CODE', 'EXCHANGE_CODE'
+              ]) }}"
+          

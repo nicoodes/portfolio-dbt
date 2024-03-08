@@ -5,7 +5,14 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - ACCOUNT_CODE
-            - SECURITY_CODE
+            - SECURITY_CODE     
+    columns:
+      - name: SECURITY_CODE
+        description: The code of the security
+        tests:
+          - relationships:
+              to: ref('dim_security_info')
+              field: SECURITY_CODE
 
   - name: dim_security
     columns:

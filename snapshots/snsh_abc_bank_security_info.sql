@@ -6,5 +6,7 @@
         check_cols=['SECURITY_HDIFF']
     )
      }}
+
+{{ config(enabled=false) }}
 select * from {{ ref('stg_abc_bank_security_info') }}
 {% endsnapshot %}
